@@ -507,7 +507,7 @@ function updatePositions() {
   var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((phase) + (i % 5));
-    items[i].style.transform = 'translate3d'( + (100 * phase) + 'px,0,0');
+    items[i].style.transform = 'translate3d(' + (100 * phase) + 'px,0,0)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
