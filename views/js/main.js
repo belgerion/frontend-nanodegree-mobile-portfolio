@@ -503,13 +503,19 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var move = document.body.scrollTop / 1250;
+//  var move = document.body.scrollTop / 1250;
+//  var items = document.querySelectorAll('.mover');
+//  var numberPizza = items.length;
+//  for (var i = 0; i < numberPizza; i++) {
+//    var phase = Math.sin((move) + (i % 50));
+//    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+//  }
   var items = document.querySelectorAll('.mover');
-  var numberPizza = items.length;
-  for (var i = 0; i < numberPizza; i++) {
-    var phase = Math.sin((move) + (i % 50));
+  for (var i = 0; i < items.length; i++) {
+    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
+
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
