@@ -505,7 +505,8 @@ function updatePositions() {
 
   var move = document.body.scrollTop / 1250;
   var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
+  var pizzas = items.length;
+  for (var i = 0; i < pizzas; i++) {
     var phase = Math.sin(move + (i % 5));
     items[i].style.transform = move + 100 * phase + 'px';
   }
