@@ -504,6 +504,7 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var move = document.body.scrollTop / 1250;
+  var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin(move + (i % 5));
     items[i].style.transform = move + 100 * phase + 'px';
@@ -537,6 +538,5 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
-  var items = document.querySelectorAll('.mover');
   updatePositions();
 });
