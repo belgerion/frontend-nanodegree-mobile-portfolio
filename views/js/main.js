@@ -504,7 +504,9 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var move = document.body.scrollTop / 1250;
-  for (var i = 0; i < move.length; i++) {
+  var items = document.querySelectorAll('.mover');
+  var number = items.length;
+  for (var i = 0; i < number; i++) {
     var phase = Math.sin((move) + (i % 5));
     items[i].style.transform = 'translate3d(' + (100 * phase) + 'px,0,0)';
   }
