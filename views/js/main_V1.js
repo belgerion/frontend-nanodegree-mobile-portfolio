@@ -449,11 +449,14 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+  // Pulled the .randomPizzaContainer from the for loop statement to remove it from being run every time
+  // Moved the dx and newwidth variables out of the for loop as they only needed to be set at the start of the function, and not on every iteration of the for loop
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+    var pizzas = document.querySelectorAll(".randomPizzaContainer");
+    var dx = determineDx(pizzas[0], size);
+    var newwidth = (pizzas[0].offsetWidth + dx) + 'px';  
+    for (var i = 0; i < pizzas.length; i++) {
+      pizzas[i].style.width = newwidth;
     }
   }
 
@@ -498,15 +501,19 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
+
+// Pulled the document.body.scrollTop out for loop to speed up painting, as it didn't need to run every time the for loop ran
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
+  var move = document.body.scrollTop / 1250;
   var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    var phase = Math.sin(move + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
+
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -522,10 +529,12 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
+
+// Lowered the number of pizzas that were painted to reduce the load. Found that 200 was far more than needed
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 75; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
