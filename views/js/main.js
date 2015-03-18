@@ -503,6 +503,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // Moves the sliding background pizzas based on scroll position
 
 // Pulled the document.body.scrollTop out for loop to speed up painting, as it didn't need to run every time the for loop ran
+// Moved the items variable out of the function, as it was slow to run, and not needed for every run through of the function. Instead assigned it's value to a static variable that would bring the value back into the function
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
@@ -531,6 +532,7 @@ window.addEventListener('scroll', updatePositions);
 // Generates the sliding pizzas when the page loads.
 
 // Lowered the number of pizzas that were painted to reduce the load. Found that 200 was far more than needed
+// Added a style.left to set the initial position of the pizzas
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
@@ -544,6 +546,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
+  //Moved the items variable to this scope, assigned it's value to a second variable that could be used in the function without having to use the document.querySelectorAll on every pass
   items = document.querySelectorAll('.mover');
   smallPizza = items.length;
   updatePositions();
