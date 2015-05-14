@@ -23,7 +23,6 @@ References
 		- https://piazza.com/class/i0sf6tsmg0r7do?cid=1218
 		- https://piazza.com/class/i0sf6tsmg0r7do?cid=1071
 		- https://piazza.com/class/i0sf6tsmg0r7do?cid=1204
-	- I looked at Nathan Bateman's github at https://github.com/Nathan-Bateman/Nathan-Bateman.github.io but did not directly reference it, as much of what was there was in the discussions on Piazza
 	- The compression tools at http://www.textfixer.com/html/compress-html-compression.php and http://jscompress.com/ which I did see listed in Nathan Bateman's github
 	- The slideshow at https://docs.google.com/presentation/d/1CH8ifryioHDLT1Oryyy8amusUmq2FytpCPCpk0G3E4o/edit#slide=id.g1762bf0ec_02
 	- The links included in the ReadMe file with the original repository
